@@ -1,0 +1,17 @@
+loaddll "TKInfo.dll";
+
+openreg "CURRENTUSER","Software\\Growl";
+$path = getregstr("");
+$path = "\"" + midstr($path, 0, strrstr($path, "\\")) + "\\growlnotify.exe\"";
+
+
+$folder = dllfuncstr( "CurrentFolder" );
+
+while( dllfunc( "SelectRecvMail" ) ) {
+  $subject =  dllfuncstr( "CurrentHeader", "Subject" );
+  run $path + " /r:Mailnotify /n:Mailnotify /a:GŠÛƒ[ƒ‹ /t:GŠÛƒ[ƒ‹ \"" + $subject + "\"";
+  #n = dllfunc("SetMailFlag", "unread", 1);
+}
+
+#n = dllfunc( "SelectFolder", "", $folder);
+
